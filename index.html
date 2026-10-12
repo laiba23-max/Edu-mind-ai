@@ -1,0 +1,817 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduMind AI - Smart Learning</title>
+
+<style>
+:root {
+  --primary: #6558f5;
+  --secondary: #15c9a5;
+  --dark: #191936;
+  --muted: #777990;
+  --bg: #f5f6ff;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: var(--dark);
+  background: var(--bg);
+  line-height: 1.6;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 6%;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 15px #00000008;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  color: var(--primary);
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.logo span {
+  color: var(--secondary);
+}
+
+nav {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: var(--dark);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: var(--primary);
+}
+
+button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.primary {
+  background: var(--primary);
+  color: white;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  align-items: center;
+  padding: 75px 7%;
+  background: linear-gradient(125deg,#efedff,#e9fff8);
+}
+
+.tag {
+  display: inline-block;
+  background: #d9fff3;
+  color: #087c68;
+  border-radius: 30px;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(35px,5vw,58px);
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.hero h1 span {
+  color: var(--primary);
+}
+
+.hero p {
+  color: var(--muted);
+  margin-bottom: 25px;
+}
+
+.hero-art {
+  text-align: center;
+  background: linear-gradient(145deg,#6558f5,#9288ff);
+  color: white;
+  border-radius: 28px;
+  padding: 38px 25px;
+  box-shadow: 0 20px 45px #6558f52c;
+}
+
+.brain {
+  font-size: 80px;
+}
+
+.hero-art p {
+  color: #eeeaff;
+  margin: 10px 0 20px;
+}
+
+.mini-stats {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 10px;
+}
+
+.mini-stats div {
+  background: #ffffff22;
+  padding: 12px 5px;
+  border-radius: 12px;
+}
+
+.mini-stats strong {
+  display: block;
+  font-size: 20px;
+}
+
+.mini-stats small {
+  font-size: 11px;
+}
+
+section.content {
+  padding: 55px 7%;
+  scroll-margin-top: 85px;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.heading h2 {
+  font-size: 31px;
+  margin-bottom: 8px;
+}
+
+.heading p {
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 20px;
+}
+
+.card, .panel {
+  background: white;
+  border: 1px solid #e9e8f5;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 8px 25px #29265c08;
+}
+
+.card:hover {
+  border-color: #bcb5ff;
+}
+
+.card-icon {
+  font-size: 38px;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin-bottom: 8px;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.light-btn {
+  background: #eeecff;
+  color: var(--primary);
+}
+
+.tutor-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 13px;
+  margin: 7px 0;
+  border: 1px solid #deddf0;
+  border-radius: 10px;
+  font: inherit;
+  background: white;
+  color: var(--dark);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.chat-box {
+  height: 260px;
+  overflow-y: auto;
+  padding: 13px;
+  margin: 15px 0;
+  background: #f6f6ff;
+  border-radius: 12px;
+}
+
+.message {
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.bot {
+  background: #eae8ff;
+}
+
+.user {
+  background: #dffaf2;
+  text-align: right;
+}
+
+.chat-input {
+  display: flex;
+  gap: 8px;
+}
+
+.chat-input input {
+  min-width: 0;
+}
+
+.chat-input button {
+  align-self: center;
+}
+
+.progress-item {
+  margin-top: 20px;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.progress-track {
+  height: 10px;
+  background: #ecebfa;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg,var(--primary),var(--secondary));
+  transition: width .3s;
+}
+
+.quiz-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin: 10px 0;
+  background: #f0efff;
+  color: var(--dark);
+}
+
+.quiz-option:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+footer {
+  background: var(--dark);
+  color: white;
+  text-align: center;
+  padding: 30px 7%;
+}
+
+footer p {
+  color: #c9c9df;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+@media(max-width:850px) {
+  .hero, .tutor-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+
+  header {
+    justify-content: center;
+  }
+
+  nav {
+    justify-content: center;
+  }
+}
+
+@media(max-width:520px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 45px 5%;
+  }
+
+  section.content {
+    padding: 40px 5%;
+  }
+
+  nav {
+    gap: 12px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">EduMind<span> AI</span></div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#subjects">Subjects</a>
+    <a href="#tutor">AI Tutor</a>
+    <a href="#quiz">Quiz</a>
+    <a href="#progress">Progress</a>
+  </nav>
+  <button class="primary" onclick="goTo('tutor')">
+    Start Learning
+  </button>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <div>
+    <div class="tag">✦ INTELLIGENT LEARNING PLATFORM</div>
+    <h1>Your Personal <span>AI Learning</span> Companion</h1>
+    <p>
+      Discover a smarter way to learn. Explore subjects,
+      ask academic questions, practice quizzes and monitor
+      your learning activity with EduMind AI.
+    </p>
+    <button class="primary" onclick="goTo('tutor')">
+      Explore AI Tutor →
+    </button>
+    <button class="light-btn" onclick="goTo('subjects')">
+      Explore Subjects
+    </button>
+  </div>
+
+  <div class="hero-art">
+    <div class="brain">🧠</div>
+    <h2>Where Knowledge Meets AI</h2>
+    <p>Learn, practice, discover and grow.</p>
+    <div class="mini-stats">
+      <div><strong>06</strong><small>Subjects</small></div>
+      <div><strong>AI</strong><small>Study Assistant</small></div>
+      <div><strong>24/7</strong><small>Access</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="subjects">
+  <div class="heading">
+    <h2>Explore Subjects</h2>
+    <p>Select a subject to personalize your study session.</p>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-icon">📐</div>
+      <h3>Mathematics</h3>
+      <p>Algebra, calculus, linear algebra and statistics.</p>
+      <button class="light-btn" onclick="chooseSubject('Mathematics')">Start Learning →</button>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">💻</div>
+      <h3>Computer Science</h3>
+      <p>Programming, algorithms and computing fundamentals.</p>
+      <button class="light-btn" onclick="chooseSubject('Computer Science')">Start Learning →</button>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">⚛️</div>
+      <h3>Physics</h3>
+      <p>Motion, energy, forces and scientific principles.</p>
+      <button class="light-btn" onclick="chooseSubject('Physics')">Start Learning →</button>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📚</div>
+      <h3>English</h3>
+      <p>Grammar, vocabulary, writing and communication.</p>
+      <button class="light-btn" onclick="chooseSubject('English')">Start Learning →</button>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🤖</div>
+      <h3>Artificial Intelligence</h3>
+      <p>Machine learning, AI concepts and intelligent systems.</p>
+      <button class="light-btn" onclick="chooseSubject('Artificial Intelligence')">Start Learning →</button>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <h3>Statistics</h3>
+      <p>Probability, data analysis and statistical methods.</p>
+      <button class="light-btn" onclick="chooseSubject('Statistics')">Start Learning →</button>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="tutor">
+  <div class="heading">
+    <h2>AI Learning Assistant</h2>
+    <p>Ask a question and receive a sample educational explanation.</p>
+  </div>
+
+  <div class="tutor-layout">
+    <div class="panel">
+      <h3>🎓 Ask Your Tutor</h3>
+
+      <label for="subjectSelect">Choose Subject</label>
+      <select id="subjectSelect">
+        <option>Mathematics</option>
+        <option>Computer Science</option>
+        <option>Physics</option>
+        <option>English</option>
+        <option>Artificial Intelligence</option>
+        <option>Statistics</option>
+      </select>
+
+      <label for="question">Enter Your Question</label>
+      <textarea id="question" rows="4"
+        placeholder="Example: Explain machine learning in simple words..."></textarea>
+
+      <button class="primary" onclick="askTutor()">Ask EduMind AI →</button>
+
+      <p style="font-size:12px;color:#777990;margin-top:15px">
+        Demo mode: sample explanations are generated locally.
+        A connected AI service is needed for real AI responses.
+      </p>
+    </div>
+
+    <div class="panel">
+      <h3>💬 Conversation</h3>
+      <div class="chat-box" id="chatBox" aria-live="polite">
+        <div class="message bot">
+          Welcome to EduMind AI! 👋
+
+          Choose your subject and ask your first question.
+        </div>
+      </div>
+      <button class="light-btn" onclick="clearChat()">Clear Chat</button>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="quiz">
+  <div class="heading">
+    <h2>Knowledge Challenge</h2>
+    <p>Answer four questions to test your mathematics knowledge.</p>
+  </div>
+
+  <div class="panel" style="max-width:650px;margin:auto">
+    <p id="quizCounter">Question 1 of 4</p>
+    <h3 id="quizQuestion" style="margin:15px 0"></h3>
+    <div id="quizOptions"></div>
+    <p id="quizFeedback" aria-live="polite"></p>
+    <button class="primary" id="nextButton"
+      onclick="nextQuestion()" style="display:none">
+      Next Question →
+    </button>
+    <p id="quizResult" style="margin-top:15px"></p>
+    <button class="light-btn" id="restartButton"
+      onclick="startQuiz()" style="display:none;margin-top:12px">
+      Try Again
+    </button>
+  </div>
+</section>
+
+<section class="content" id="progress">
+  <div class="heading">
+    <h2>Learning Dashboard</h2>
+    <p>Monitor your activity during the current session.</p>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-icon">📖</div>
+      <h3>Subjects Explored</h3>
+      <h2 id="subjectsCount">0</h2>
+    </div>
+    <div class="card">
+      <div class="card-icon">💬</div>
+      <h3>Questions Asked</h3>
+      <h2 id="questionsCount">0</h2>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏆</div>
+      <h3>Latest Quiz Score</h3>
+      <h2 id="scoreCount">Not completed</h2>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:22px">
+    <h3>Learning Activity</h3>
+
+    <div class="progress-item">
+      <div class="progress-label">
+        <span>Subjects explored</span>
+        <span id="subjectPercent">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="subjectBar"></div>
+      </div>
+    </div>
+
+    <div class="progress-item">
+      <div class="progress-label">
+        <span>Quiz completion</span>
+        <span id="quizPercent">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="quizBar"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="logo" style="color:white">EduMind<span> AI</span></div>
+  <p>Empowering learners through technology and innovation.</p>
+  <p>© 2026 EduMind AI | Educational Demo Project</p>
+</footer>
+
+<script>
+const explored = new Set();
+let questionCount = 0;
+let quizScore = 0;
+let quizFinished = false;
+let quizIndex = 0;
+let answered = false;
+
+const questions = [
+  {
+    q: "What is 5²?",
+    options: ["10", "25", "15", "20"],
+    answer: 1,
+    explanation: "5² = 5 × 5 = 25."
+  },
+  {
+    q: "What is the derivative of x²?",
+    options: ["x", "2x", "x³", "2"],
+    answer: 1,
+    explanation: "Using the power rule, d(x²)/dx = 2x."
+  },
+  {
+    q: "What is the probability of getting heads on a fair coin?",
+    options: ["0", "1", "1/2", "2"],
+    answer: 2,
+    explanation: "There are two equally likely outcomes, so the probability is 1/2."
+  },
+  {
+    q: "What is the mean of 2, 4 and 6?",
+    options: ["3", "4", "5", "6"],
+    answer: 1,
+    explanation: "Mean = (2 + 4 + 6) / 3 = 4."
+  }
+];
+
+function goTo(id) {
+  document.getElementById(id).scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+function chooseSubject(subject) {
+  explored.add(subject);
+  document.getElementById("subjectSelect").value = subject;
+  updateDashboard();
+  goTo("tutor");
+}
+
+function addMessage(text, type) {
+  const box = document.getElementById("chatBox");
+  const message = document.createElement("div");
+  message.className = "message " + type;
+  message.textContent = text;
+  box.appendChild(message);
+  box.scrollTop = box.scrollHeight;
+}
+
+function askTutor() {
+  const questionInput = document.getElementById("question");
+  const question = questionInput.value.trim();
+  const subject = document.getElementById("subjectSelect").value;
+
+  if (!question) {
+    alert("Please enter a question first.");
+    questionInput.focus();
+    return;
+  }
+
+  explored.add(subject);
+  questionCount++;
+
+  addMessage(subject + ": " + question, "user");
+
+  const q = question.toLowerCase();
+  let answer;
+
+  if (q.includes("derivative")) {
+    answer = "A derivative measures the rate of change of a function. For example, the derivative of x² is 2x.";
+  } else if (q.includes("linear regression")) {
+    answer = "Linear regression is a machine learning method that models the relationship between variables using a linear equation. It can be used to predict numerical values.";
+  } else if (q.includes("probability")) {
+    answer = "Probability measures how likely an event is. Its value ranges from 0 (impossible) to 1 (certain).";
+  } else if (q.includes("machine learning")) {
+    answer = "Machine learning is a branch of AI in which algorithms learn patterns from data and use those patterns to make predictions or decisions.";
+  } else if (q.includes("mean")) {
+    answer = "The arithmetic mean is calculated by adding all values and dividing their sum by the number of values.";
+  } else if (q.includes("html")) {
+    answer = "HTML stands for HyperText Markup Language. It provides the structure and content of a web page.";
+  } else {
+    answer = "Let's explore " + subject + ". Start by identifying the key concepts, review a simple example, and then practice a similar problem. This is a demo response; connect a real AI API for personalized explanations of your exact question.";
+  }
+
+  addMessage(answer, "bot");
+  questionInput.value = "";
+  updateDashboard();
+}
+
+function clearChat() {
+  document.getElementById("chatBox").replaceChildren();
+  addMessage("Chat cleared. Ask a new educational question!", "bot");
+}
+
+function updateDashboard() {
+  document.getElementById("subjectsCount").textContent = explored.size;
+  document.getElementById("questionsCount").textContent = questionCount;
+
+  const percent = Math.round(explored.size / 6 * 100);
+  document.getElementById("subjectPercent").textContent = percent + "%";
+  document.getElementById("subjectBar").style.width = percent + "%";
+}
+
+function renderQuestion() {
+  answered = false;
+
+  const item = questions[quizIndex];
+  document.getElementById("quizCounter").textContent =
+    "Question " + (quizIndex + 1) + " of " + questions.length;
+
+  document.getElementById("quizQuestion").textContent = item.q;
+  document.getElementById("quizFeedback").textContent = "";
+  document.getElementById("quizResult").textContent = "";
+  document.getElementById("nextButton").style.display = "none";
+  document.getElementById("restartButton").style.display = "none";
+
+  const options = document.getElementById("quizOptions");
+  options.replaceChildren();
+
+  item.options.forEach((option, index) => {
+    const button = document.createElement("button");
+    button.className = "quiz-option";
+    button.textContent = option;
+    button.onclick = () => answerQuestion(index);
+    options.appendChild(button);
+  });
+}
+
+function answerQuestion(index) {
+  if (answered) return;
+  answered = true;
+
+  const item = questions[quizIndex];
+  const buttons = document.querySelectorAll(".quiz-option");
+
+  buttons.forEach(button => button.disabled = true);
+
+  if (index === item.answer) {
+    quizScore++;
+    document.getElementById("quizFeedback").textContent =
+      "Correct! " + item.explanation;
+  } else {
+    document.getElementById("quizFeedback").textContent =
+      "Not quite. " + item.explanation;
+  }
+
+  document.getElementById("nextButton").style.display = "inline-block";
+  document.getElementById("nextButton").textContent =
+    quizIndex === questions.length - 1 ? "View Results" : "Next Question →";
+}
+
+function nextQuestion() {
+  if (!answered) return;
+
+  if (quizIndex < questions.length - 1) {
+    quizIndex++;
+    renderQuestion();
+  } else {
+    finishQuiz();
+  }
+}
+
+function finishQuiz() {
+  quizFinished = true;
+  document.getElementById("quizCounter").textContent = "Quiz completed!";
+  document.getElementById("quizQuestion").textContent = "Your Results";
+  document.getElementById("quizOptions").replaceChildren();
+  document.getElementById("quizFeedback").textContent = "";
+  document.getElementById("nextButton").style.display = "none";
+
+  const percent = Math.round(quizScore / questions.length * 100);
+
+  document.getElementById("quizResult").textContent =
+    "You scored " + quizScore + " out of " +
+    questions.length + " (" + percent + "%).";
+
+  document.getElementById("restartButton").style.display = "inline-block";
+  document.getElementById("scoreCount").textContent =
+    quizScore + "/" + questions.length;
+
+  document.getElementById("quizPercent").textContent = "100%";
+  document.getElementById("quizBar").style.width = "100%";
+}
+
+function startQuiz() {
+  quizScore = 0;
+  quizIndex = 0;
+  quizFinished = false;
+  renderQuestion();
+  document.getElementById("scoreCount").textContent = "Not completed";
+  document.getElementById("quizPercent").textContent = "0%";
+  document.getElementById("quizBar").style.width = "0%";
+}
+
+document.getElementById("question").addEventListener("keydown", function(event) {
+  if (event.key === "Enter" && !event.shiftKey) {
+    event.preventDefault();
+    askTutor();
+  }
+});
+
+startQuiz();
+</script>
+
+</body>
+</html>
